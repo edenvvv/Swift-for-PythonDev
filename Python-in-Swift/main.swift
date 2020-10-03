@@ -19,9 +19,9 @@ print("pythonString is: ",pythonString[0..<6])
 print("pythonRange is: ",pythonRange)
 print("pythonArray[2] is: ",pythonArray[2])
 print("pythonDict['bar'] is: ",pythonDict["bar"])
-
-
 print("")
+
+
 // Convert Python objects back to Swift.
 let int = Int(pythonInt)!
 let float = Float(pythonFloat)!
@@ -37,8 +37,8 @@ print(string.prefix(6))
 print(range)
 print(array1[2])
 print(dict["bar"]!)
-
 print("")
+
 
 let one: PythonObject = 1
 print(one == one)
@@ -78,3 +78,28 @@ print(np)
 let zeros = np.zeros([2, 3])
 print(zeros)
 
+
+print("----------------------------------------------")
+print("Conversion with numpy.ndarray")
+
+import TensorFlow
+
+let numpyArray = np.ones([4], dtype: np.float32)
+print("Swift type:", type(of: numpyArray))
+print("Python type:", Python.type(numpyArray))
+print("numpyArray shape:",numpyArray.shape)
+print("")
+
+// Examples of converting 'numpy.ndarray' to Swift types.
+let array: [Float] = Array(numpy: numpyArray)!
+let shapedArray = ShapedArray<Float>(numpy: numpyArray)!
+let tensor = Tensor<Float>(numpy: numpyArray)!
+
+// Examples of converting Swift types to 'numpy.ndarray'.
+print("array:",array.makeNumpyArray())
+print("shapedArray:",shapedArray.makeNumpyArray())
+print("tensor:",tensor.makeNumpyArray())
+
+// Examples with different dtypes.
+let doubleArray: [Double] = Array(numpy: np.ones([3], dtype: np.float))!
+let intTensor = Tensor<Int32>(numpy: np.ones([2, 3], dtype: np.int32))!

@@ -56,3 +56,25 @@ print("pythonTuple:", pythonTuple, "in len:", Python.len(pythonTuple))
 // Convert to Swift.
 let tuple = pythonTuple.tuple3
 print("swift tuple:",tuple)
+
+
+print("----------------------------------------------")
+print("Python builtins")
+
+// `Python.builtins` is a dictionary of all Python builtins.
+_ = Python.builtins
+
+// some of Python builtins.
+print(Python.type(1))
+print(Python.len([1, 2, 3]))
+print(Python.sum([1, 2, 3]))
+
+
+print("----------------------------------------------")
+print("Importing Python modules")
+
+let np = Python.import("numpy")
+print(np)
+let zeros = np.zeros([2, 3])
+print(zeros)
+
